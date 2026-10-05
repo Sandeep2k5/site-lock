@@ -1,4 +1,6 @@
-# 🔒 Site Lock
+<p align="center"><img src="icons/icon-128.png" width="96" alt="Site Lock icon"></p>
+
+<h1 align="center">Site Lock</h1>
 
 **Password-protect any website in Microsoft Edge.**
 
@@ -100,10 +102,23 @@ site-lock/
 ├── shared.js        # Password hashing and domain helpers
 ├── lock.html/.js    # Password screen shown in place of a locked site
 ├── popup.html/.js   # Toolbar popup: setup, quick lock, site management
-└── style.css        # Shared styles with light and dark themes
+├── style.css        # Shared styles with light and dark themes
+├── icons/           # Toolbar and extension icons (16–128 px)
+├── store/           # Store listing assets (300×300 logo)
+└── tools/
+    ├── make-icons.mjs   # Regenerates the icons: node tools/make-icons.mjs
+    └── package.ps1      # Builds dist/site-lock-<version>.zip for the store
 ```
 
 No build step and no dependencies. Edit a file, then click **Reload** on the Site Lock card in `edge://extensions`.
+
+### Package for Edge Add-ons
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools/package.ps1
+```
+
+This writes `dist/site-lock-<version>.zip` with `manifest.json` at the root, ready to upload in Partner Center. Bump `version` in `manifest.json` before each new submission.
 
 ---
 
@@ -116,7 +131,7 @@ No build step and no dependencies. Edit a file, then click **Reload** on the Sit
 | `alarms` | Re-lock sites when their unlock timer ends |
 | Access to all sites | Needed for redirects, and to lock tabs that are already open |
 
-All data stays in your browser's local extension storage. Nothing is sent anywhere.
+All data stays in your browser's local extension storage. Nothing is sent anywhere. See [PRIVACY.md](PRIVACY.md).
 
 ---
 

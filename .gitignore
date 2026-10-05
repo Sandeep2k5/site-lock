@@ -5,3 +5,4 @@ Thumbs.db
 *.pem
 .vscode/
 .claude/
+dist/
