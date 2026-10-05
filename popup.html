@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Site Lock</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { width: 320px; padding: 16px; }
+    section { gap: 12px; }
+    .panel { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 12px; }
+    #current-host { font-weight: 600; word-break: break-all; }
+    ul { list-style: none; margin: 0; padding: 0; max-height: 180px; overflow-y: auto; }
+    li { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--border); }
+    li:last-child { border-bottom: 0; }
+    li span { word-break: break-all; }
+    .empty { color: var(--muted); padding: 6px 0; }
+  </style>
+</head>
+<body>
+  <!-- First run: create the master password -->
+  <section id="view-setup" class="stack hidden">
+    <h1>Site Lock</h1>
+    <p class="muted">Create a password. You'll need it to open locked sites.</p>
+    <form id="setup-form" class="stack">
+      <input id="setup-pw" type="password" placeholder="New password" autocomplete="new-password" required>
+      <input id="setup-pw2" type="password" placeholder="Confirm password" autocomplete="new-password" required>
+      <button type="submit">Save password</button>
+      <p id="setup-error" class="error"></p>
+    </form>
+  </section>
+
+  <!-- Default view -->
+  <section id="view-main" class="stack hidden">
+    <h1>Site Lock</h1>
+    <div id="current" class="panel stack hidden">
+      <div>
+        <div id="current-host"></div>
+        <div id="current-status" class="muted"></div>
+      </div>
+      <button id="current-action"></button>
+    </div>
+    <div class="row">
+      <button id="lock-all" class="secondary" style="flex:1">Lock all now</button>
+      <button id="open-manage" class="secondary" style="flex:1">Manage sites</button>
+    </div>
+    <form id="auth-form" class="stack hidden">
+      <input id="auth-pw" type="password" placeholder="Password" autocomplete="current-password" required>
+      <button type="submit">Continue</button>
+      <p id="auth-error" class="error"></p>
+    </form>
+    <p id="main-msg" class="ok"></p>
+  </section>
+
+  <!-- Behind the password -->
+  <section id="view-manage" class="stack hidden">
+    <div class="row" style="justify-content:space-between">
+      <h1>Locked sites</h1>
+      <button id="back" class="secondary">Back</button>
+    </div>
+    <form id="add-form" class="row">
+      <input id="add-domain" placeholder="example.com" required>
+      <button type="submit">Add</button>
+    </form>
+    <div class="panel"><ul id="site-list"></ul></div>
+
+    <label class="stack" style="gap:4px">
+      <span class="muted">Re-lock after unlocking</span>
+      <select id="relock">
+        <option value="5">5 minutes</option>
+        <option value="15">15 minutes</option>
+        <option value="30">30 minutes</option>
+        <option value="60">1 hour</option>
+        <option value="0">When the browser closes</option>
+      </select>
+    </label>
+
+    <details>
+      <summary class="muted">Change password</summary>
+      <form id="pw-form" class="stack" style="margin-top:8px">
+        <input id="new-pw" type="password" placeholder="New password" autocomplete="new-password" required>
+        <button type="submit">Update password</button>
+      </form>
+    </details>
+    <p id="manage-msg" class="error"></p>
+  </section>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

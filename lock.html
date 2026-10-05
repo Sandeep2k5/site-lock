@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Site locked</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { min-height: 100vh; display: grid; place-items: center; padding: 16px; }
+    .card {
+      width: 100%; max-width: 360px;
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+      padding: 28px 24px; text-align: center;
+    }
+    .icon { color: var(--accent); margin-bottom: 12px; }
+    #site { word-break: break-all; }
+    form { margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <svg class="icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+    </svg>
+    <h1 id="site">This site</h1>
+    <p class="muted">is locked. Enter your password to continue.</p>
+    <form id="form" class="stack">
+      <input id="password" type="password" placeholder="Password" autocomplete="current-password" autofocus required>
+      <button id="submit" type="submit">Unlock</button>
+      <p id="error" class="error" role="alert"></p>
+    </form>
+  </main>
+  <script type="module" src="lock.js"></script>
+</body>
+</html>
