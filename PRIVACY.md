@@ -30,4 +30,4 @@ Removing the extension from your browser deletes all of the data above.
 
 ## Contact
 
-Questions about this policy: SUPPORT_EMAIL_HERE
+Questions about this policy: [open an issue on GitHub](https://github.com/Sandeep2k5/site-lock/issues).

@@ -1,154 +1,210 @@
-<p align="center"><img src="icons/icon-128.png" width="96" alt="Site Lock icon"></p>
+<div align="center">
 
-<h1 align="center">Site Lock</h1>
+<img src="icons/icon-128.png" width="104" alt="Site Lock logo">
 
-**Password-protect any website in Microsoft Edge.**
+# Site Lock
 
-Pick the sites you want to guard, set one master password, and Site Lock shows a password screen whenever someone opens those sites. It is built on Manifest V3 and runs entirely on your machine: no account, no server, no tracking.
+### Put a password on any website.
 
----
+A tiny, private browser extension for **Microsoft Edge** that locks the sites you choose behind a password.<br>
+No account. No servers. No tracking. Just a lock.
+
+[![Microsoft Edge](https://img.shields.io/badge/Microsoft_Edge-ready-0078D7?style=for-the-badge&logo=microsoftedge&logoColor=white)](#-install-in-30-seconds)
+[![Manifest V3](https://img.shields.io/badge/Manifest-V3-3b5bdb?style=for-the-badge)](https://learn.microsoft.com/en-us/microsoft-edge/extensions/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-2b8a3e?style=for-the-badge)](LICENSE)
+[![Dependencies: 0](https://img.shields.io/badge/dependencies-0-646b78?style=for-the-badge)](#-under-the-hood)
+
+[**⬇️ Download**](https://github.com/Sandeep2k5/site-lock/releases/latest) · [**Install**](#-install-in-30-seconds) · [**How it works**](#-under-the-hood) · [**Privacy**](PRIVACY.md)
+
+<br>
+
+<img src="docs/hero.png" alt="A locked YouTube tab in Edge showing the Site Lock password screen" width="860">
+
+</div>
+
+<br>
+
+## 🤔 Why?
+
+Sometimes you want a little friction between you and a website, or a little privacy on a shared computer.
+
+- 🎯 **Stay focused:** lock YouTube, Reddit or X during work, and unlocking becomes a conscious choice.
+- 👨‍👩‍👧 **Shared PC:** keep your email, banking or chats out of sight when someone else uses the computer.
+- 🙈 **Peace of mind:** a page you've locked never shows up on screen by accident.
+
+<br>
 
 ## ✨ Features
 
-| | |
-|---|---|
-| 🛡️ **Blocks before loading** | Locked sites never render. Navigation is redirected to the lock screen at the network level, so there is no flash of content. |
-| 🌐 **Covers subdomains** | Locking `youtube.com` also locks `www.youtube.com`, `m.youtube.com`, and so on. |
-| ⏱️ **Auto re-lock** | An unlocked site locks itself again after 5, 15, 30 (default) or 60 minutes, or when the browser closes. |
-| 🔁 **Locks on restart** | Every unlock is forgotten when Edge closes. |
-| 📑 **Locks open tabs too** | When you lock a site or its timer runs out, any tab already showing it switches to the lock screen. |
-| ⚡ **One-click lock** | Lock the site you are on from the toolbar popup, or lock everything at once with **Lock all now**. |
-| 🔑 **Protected settings** | Removing a site, changing the re-lock timer or changing the password all need the current password. |
-| 🧂 **Hashed password** | The password is never stored. Only a salted PBKDF2-SHA256 hash (200,000 iterations) is kept. |
-| 🌗 **Light and dark mode** | Follows your system theme. |
+<table>
+<tr>
+<td width="50%" valign="top">
 
----
+### 🛡️ Blocks before it loads
+Locked sites are redirected at the network level, so the page never appears on screen, even for a moment.
 
-## 🚀 Install in Microsoft Edge
+### ⏱️ Re-locks itself
+Unlocked sites lock again after **5 / 15 / 30 / 60 minutes**, or when you close Edge. You choose.
 
-Site Lock is not on the Edge Add-ons store, so you load it from this folder.
+### 🌐 Covers subdomains
+Lock `youtube.com` and `m.youtube.com`, `music.youtube.com` and the rest are locked too.
 
-1. **Get the code**
-   ```bash
-   git clone https://github.com/Sandeep2k5/site-lock.git
-   ```
-2. Open **`edge://extensions`** in Edge.
-3. Turn on **Developer mode** (toggle in the left sidebar, or at the bottom left on narrow windows).
-4. Click **Load unpacked** and choose the `site-lock` folder.
-5. Click the **Extensions** (puzzle-piece) icon in the toolbar, then the 👁️ eye icon next to **Site Lock** to pin it.
+</td>
+<td width="50%" valign="top">
 
-> **Note:** Edge may show a banner about developer-mode extensions when it starts. Dismiss it; the extension keeps working.
+### 📑 Locks open tabs
+Lock a site and every tab already showing it switches to the lock screen straight away.
 
-> Works in Chrome, Brave and other Chromium browsers too. Use `chrome://extensions` there.
+### 🔑 Settings need the password
+Removing a site, changing the timer or changing the password all ask for the current password.
 
----
+### 🧂 Never stores your password
+Only a salted **PBKDF2-SHA256** hash (200,000 rounds) is saved, and it stays on your device.
 
-## 🧭 How to use
+</td>
+</tr>
+</table>
 
-### 1. Create your password
-Click the Site Lock icon. The first time, it asks you to create a master password (at least 4 characters).
+<div align="center">
+<img src="docs/popup.png" alt="The Site Lock popup: lock the current site, manage the list, and see unlock status" width="860">
+</div>
 
-### 2. Lock a site
-- **Current site:** open the site, click the Site Lock icon, then **Lock this site**.
-- **Any site:** click **Manage sites**, enter your password, type a domain such as `reddit.com`, then click **Add**.
+<br>
 
-### 3. Open a locked site
-Visit it as usual. You see the lock screen. Enter the password and the page you asked for opens.
+## 🚀 Install in 30 seconds
 
-### 4. Manage
-From **Manage sites** (password required) you can:
-- remove a site from the lock list
-- change how long a site stays unlocked
-- change your password
+> Site Lock isn't on the Edge Add-ons store yet, so it's installed manually. It takes four clicks.
 
-### Popup at a glance
+1. **Download** `site-lock-*.zip` from the [latest release](https://github.com/Sandeep2k5/site-lock/releases/latest) and **extract** it to a folder you'll keep.
+2. Open **`edge://extensions`**.
+3. Turn on **Developer mode** (left sidebar).
+4. Click **Load unpacked** and select the extracted folder.
 
-| Popup shows | Meaning | Button |
-|---|---|---|
-| **Not locked** | This site is not on your list | **Lock this site** |
-| **Unlocked until 3:45 PM** | You unlocked it recently | **Lock it again now** |
-| **Locked** | It is on your list and locked | — |
+Then click the 🧩 icon in the toolbar and pin **Site Lock** so it's always visible.
 
----
+<details>
+<summary><b>Using Chrome, Brave, Opera or another Chromium browser?</b></summary>
+<br>
+Same steps. Open <code>chrome://extensions</code> (or your browser's equivalent) instead of <code>edge://extensions</code>.
+</details>
 
-## ⚙️ How it works
+<details>
+<summary><b>Edge shows a warning about developer-mode extensions</b></summary>
+<br>
+That's normal for extensions installed outside the store. Close the warning; Site Lock keeps working.
+</details>
+
+<br>
+
+## 🧭 Usage
+
+| Step | What to do |
+|:---:|---|
+| **1** | Click the Site Lock icon and **create a password**. |
+| **2** | Open a site you want to lock, click the icon, then **Lock this site**. |
+| **3** | Next time you open it, you'll see the lock screen. Enter the password to continue. |
+| **4** | Use **Manage sites** to add or remove sites, change the re-lock timer or change your password. |
+| **⚡** | **Lock all now** locks every unlocked site straight away. |
+
+<br>
+
+## ⚙️ Under the hood
 
 ```mermaid
 flowchart LR
-    A[You open youtube.com] --> B{On lock list?}
-    B -- No --> P[Page loads]
-    B -- Yes --> C{Unlocked this session?}
+    A([You open youtube.com]) --> B{On lock list?}
+    B -- No --> P([Page loads])
+    B -- Yes --> C{Unlocked<br>this session?}
     C -- Yes --> P
-    C -- No --> L[Lock screen]
-    L -- Correct password --> U[Unlock for N minutes] --> P
-    U -. timer ends or Edge closes .-> L
+    C -- No --> L[🔒 Lock screen]
+    L -- Correct password --> U[Unlock for N min] --> P
+    U -. timer ends / Edge closes .-> L
 ```
 
-Site Lock uses Edge's [`declarativeNetRequest`](https://developer.chrome.com/docs/extensions/reference/api/declarativeNetRequest) API with two rules:
+Site Lock is built on the [`declarativeNetRequest`](https://developer.chrome.com/docs/extensions/reference/api/declarativeNetRequest) API with just **two rules**:
 
-1. **Lock rule** (dynamic, saved across restarts): redirects top-level visits to any locked domain to `lock.html#<original-url>`.
-2. **Unlock rule** (session, cleared when Edge closes): a higher-priority `allow` rule for the domains you have unlocked.
+| Rule | Type | Does |
+|---|---|---|
+| 🔒 **Lock** | Dynamic (survives restarts) | Redirects top-level visits to locked domains → `lock.html#<original-url>` |
+| 🔓 **Unlock** | Session (wiped when Edge closes) | Higher-priority `allow` for domains you've just unlocked |
 
-Unlocking adds the domain to the session rule and sets a `chrome.alarms` timer. When the timer fires, the domain is removed and open tabs on it are sent back to the lock screen.
+When you unlock, the domain joins the session rule and a `chrome.alarms` timer starts. When it fires, the domain is removed and any open tabs of it go back to the lock screen.
 
----
-
-## 📁 Project structure
+<details>
+<summary><b>📁 Project structure</b></summary>
 
 ```
 site-lock/
-├── manifest.json    # Extension config (Manifest V3)
-├── background.js    # Service worker: lock/unlock rules, timers, password checks
-├── shared.js        # Password hashing and domain helpers
-├── lock.html/.js    # Password screen shown in place of a locked site
-├── popup.html/.js   # Toolbar popup: setup, quick lock, site management
-├── style.css        # Shared styles with light and dark themes
-├── icons/           # Toolbar and extension icons (16–128 px)
-├── store/           # Store listing assets (300×300 logo)
+├── manifest.json        Extension config (Manifest V3)
+├── background.js        Service worker: rules, timers, password checks
+├── shared.js            Password hashing + domain helpers
+├── lock.html / lock.js  The lock screen
+├── popup.html / popup.js  Toolbar popup
+├── style.css            Shared styles, light + dark
+├── icons/               16–128 px icons
+├── store/               Store listing assets
+├── docs/                README images
 └── tools/
-    ├── make-icons.mjs   # Regenerates the icons: node tools/make-icons.mjs
-    └── package.ps1      # Builds dist/site-lock-<version>.zip for the store
+    ├── make-icons.mjs   node tools/make-icons.mjs → regenerates icons
+    └── package.ps1      Builds dist/site-lock-<version>.zip
 ```
 
-No build step and no dependencies. Edit a file, then click **Reload** on the Site Lock card in `edge://extensions`.
+No build step. Edit a file, then hit **Reload** on the Site Lock card in `edge://extensions`.
 
-### Package for Edge Add-ons
+</details>
 
-```powershell
-powershell -ExecutionPolicy Bypass -File tools/package.ps1
-```
+<details>
+<summary><b>🔐 Permissions explained</b></summary>
+<br>
 
-This writes `dist/site-lock-<version>.zip` with `manifest.json` at the root, ready to upload in Partner Center. Bump `version` in `manifest.json` before each new submission.
-
----
-
-## 🔐 Permissions
-
-| Permission | Why it is needed |
+| Permission | Why |
 |---|---|
 | `declarativeNetRequest` | Redirect locked sites to the lock screen before they load |
 | `storage` | Save your site list, settings and password hash |
-| `alarms` | Re-lock sites when their unlock timer ends |
-| Access to all sites | Needed for redirects, and to lock tabs that are already open |
+| `alarms` | Re-lock sites when their timer ends |
+| Access to all sites | Needed for the redirect, and to lock tabs that are already open |
 
-All data stays in your browser's local extension storage. Nothing is sent anywhere. See [PRIVACY.md](PRIVACY.md).
+Everything stays in your browser's local extension storage. Nothing is ever sent anywhere. Read the [privacy policy](PRIVACY.md).
 
----
+</details>
 
-## ⚠️ Limitations
+<br>
 
-Site Lock is a **privacy and self-control tool, not a security boundary**.
+## ⚠️ Good to know
 
-- Anyone with access to your Windows account can turn the extension off in `edge://extensions`.
-- It does not lock InPrivate windows unless you enable **Allow in InPrivate** on the extension's details page.
-- If you forget your password, remove and reinstall the extension. This deletes your site list as well.
+Site Lock is a **focus and privacy tool, not a vault**.
 
----
+- Anyone who can use your Windows account can turn the extension off in `edge://extensions`.
+- To lock sites in **InPrivate** windows too, open the extension's **Details** page and turn on **Allow in InPrivate**.
+- **Forgot your password?** Remove and re-add the extension. Your site list resets too.
 
-## 🛠️ Tech
+<br>
 
-Vanilla JavaScript (ES modules) · Manifest V3 · `declarativeNetRequest` · Web Crypto API (PBKDF2) · No frameworks, no dependencies
+## 🗺️ Roadmap
 
----
+- [ ] Publish on Microsoft Edge Add-ons
+- [ ] Scheduled locks (e.g. lock social media 9am–5pm)
+- [ ] A different password for each site
+- [ ] Lock specific pages, not just whole domains
 
-<sub>Built by **Sandeep Uthayakumar**.</sub>
+Have an idea? [Open an issue](https://github.com/Sandeep2k5/site-lock/issues).
+
+<br>
+
+## 🤝 Contributing
+
+Bug reports, ideas and pull requests are welcome.
+
+1. Fork the repo and create a branch
+2. Load it unpacked in Edge and make your change
+3. Open a pull request describing what changed and how you tested it
+
+<br>
+
+<div align="center">
+
+**If Site Lock helps you, a ⭐ on the repo helps other people find it.**
+
+Made by [**Sandeep Uthayakumar**](https://github.com/Sandeep2k5) · [MIT License](LICENSE)
+
+</div>
