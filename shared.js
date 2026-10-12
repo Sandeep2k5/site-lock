@@ -15,10 +15,18 @@ export async function hashPassword(password, saltB64) {
   return { salt: toB64(salt), hash: toB64(new Uint8Array(bits)) };
 }
 
+// Compares every character so the time taken doesn't hint at how much matched.
+function safeEqual(a, b) {
+  if (a.length !== b.length) return false;
+  let diff = 0;
+  for (let i = 0; i < a.length; i++) diff |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  return diff === 0;
+}
+
 export async function verifyPassword(password, stored) {
   if (!stored) return false;
   const { hash } = await hashPassword(password, stored.salt);
-  return hash === stored.hash;
+  return safeEqual(hash, stored.hash);
 }
 
 // "https://www.YouTube.com/watch?v=1" -> "youtube.com"
@@ -27,7 +35,10 @@ export function normalizeDomain(input) {
   if (!s) return '';
   if (!/^[a-z]+:\/\//.test(s)) s = 'http://' + s;
   try {
-    return new URL(s).hostname.replace(/^www\./, '');
+    const host = new URL(s).hostname.replace(/^www\./, '');
+    // Needs a dot (or be localhost) and only hostname characters.
+    if (!/^[a-z0-9.-]+$/.test(host) || (!host.includes('.') && host !== 'localhost')) return '';
+    return host;
   } catch {
     return '';
   }

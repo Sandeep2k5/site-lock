@@ -3,8 +3,9 @@
 $root = Split-Path $PSScriptRoot -Parent
 $version = (Get-Content "$root\manifest.json" -Raw | ConvertFrom-Json).version
 
-$files = @('manifest.json', 'background.js', 'shared.js', 'lock.html', 'lock.js',
-           'popup.html', 'popup.js', 'style.css') +
+$files = @('manifest.json', 'background.js', 'shared.js', 'guard.js',
+           'lock.html', 'lock.js', 'lock.css',
+           'popup.html', 'popup.js', 'popup.css', 'style.css') +
          (Get-ChildItem "$root\icons" -File | ForEach-Object { "icons/$($_.Name)" })
 
 $out = "$root\dist\site-lock-$version.zip"

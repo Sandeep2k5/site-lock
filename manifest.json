@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Site Lock",
-  "version": "1.0.0",
-  "description": "Password-protect the websites you choose.",
+  "version": "1.1.0",
+  "description": "Lock Instagram, WhatsApp and any site you choose behind a password, even if you forget to lock your laptop.",
   "icons": {
     "16": "icons/icon-16.png",
     "32": "icons/icon-32.png",
@@ -12,7 +12,10 @@
   "permissions": [
     "storage",
     "declarativeNetRequest",
-    "alarms"
+    "alarms",
+    "scripting",
+    "idle",
+    "favicon"
   ],
   "host_permissions": [
     "<all_urls>"
@@ -28,6 +31,15 @@
       "32": "icons/icon-32.png"
     },
     "default_popup": "popup.html"
+  },
+  "commands": {
+    "lock-all": {
+      "suggested_key": { "default": "Alt+Shift+L" },
+      "description": "Lock every site now"
+    }
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'"
   },
   "web_accessible_resources": [
     {
