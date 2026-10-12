@@ -4,84 +4,109 @@
   <meta charset="utf-8">
   <title>Site Lock</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    body { width: 320px; padding: 16px; }
-    section { gap: 12px; }
-    .panel { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 12px; }
-    #current-host { font-weight: 600; word-break: break-all; }
-    ul { list-style: none; margin: 0; padding: 0; max-height: 180px; overflow-y: auto; }
-    li { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--border); }
-    li:last-child { border-bottom: 0; }
-    li span { word-break: break-all; }
-    .empty { color: var(--muted); padding: 6px 0; }
-  </style>
+  <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-  <!-- First run: create the master password -->
-  <section id="view-setup" class="stack hidden">
-    <h1>Site Lock</h1>
-    <p class="muted">Create a password. You'll need it to open locked sites.</p>
+  <header class="top">
+    <img src="icons/icon-32.png" width="22" height="22" alt="">
+    <span class="brand">Site Lock</span>
+    <button id="back" class="link hidden">Done</button>
+  </header>
+
+  <!-- First run -->
+  <section id="view-setup" class="view stack hidden">
+    <div>
+      <h1>Keep your chats private</h1>
+      <p class="muted">Create a password. Then open any site you want to protect, click Site Lock, and lock it.</p>
+    </div>
     <form id="setup-form" class="stack">
-      <input id="setup-pw" type="password" placeholder="New password" autocomplete="new-password" required>
-      <input id="setup-pw2" type="password" placeholder="Confirm password" autocomplete="new-password" required>
-      <button type="submit">Save password</button>
-      <p id="setup-error" class="error"></p>
+      <input id="setup-pw" type="password" placeholder="Create a password" autocomplete="new-password" minlength="4" required>
+      <input id="setup-pw2" type="password" placeholder="Type it again" autocomplete="new-password" required>
+      <button type="submit">Create password</button>
+      <p id="setup-error" class="error" role="alert"></p>
     </form>
   </section>
 
   <!-- Default view -->
-  <section id="view-main" class="stack hidden">
-    <h1>Site Lock</h1>
-    <div id="current" class="panel stack hidden">
-      <div>
+  <section id="view-main" class="view stack hidden">
+    <div id="ask" class="ask hidden">
+      <img id="ask-icon" class="ask-icon" alt="">
+      <h1>Lock <span id="ask-host"></span>?</h1>
+      <p class="muted">Anyone who opens this site on this browser will need your password.</p>
+      <div class="row">
+        <button id="ask-yes" style="flex:1">Lock this site</button>
+        <button id="ask-no" class="quiet">Not now</button>
+      </div>
+    </div>
+    <div id="current" class="current hidden">
+      <img id="current-icon" class="favicon" alt="">
+      <div class="current-text">
         <div id="current-host"></div>
         <div id="current-status" class="muted"></div>
       </div>
       <button id="current-action"></button>
     </div>
-    <div class="row">
-      <button id="lock-all" class="secondary" style="flex:1">Lock all now</button>
-      <button id="open-manage" class="secondary" style="flex:1">Manage sites</button>
-    </div>
-    <form id="auth-form" class="stack hidden">
+
+    <button id="lock-all" class="big">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/></svg>
+      <span>Lock all now</span>
+      <kbd id="shortcut" class="hidden"></kbd>
+    </button>
+
+    <p id="summary" class="muted summary"></p>
+
+    <form id="auth-form" class="row hidden">
       <input id="auth-pw" type="password" placeholder="Password" autocomplete="current-password" required>
-      <button type="submit">Continue</button>
-      <p id="auth-error" class="error"></p>
+      <button type="submit">Open</button>
     </form>
-    <p id="main-msg" class="ok"></p>
+    <p id="main-msg" class="ok" role="status"></p>
+    <button id="open-manage" class="quiet">Sites and settings</button>
   </section>
 
   <!-- Behind the password -->
-  <section id="view-manage" class="stack hidden">
-    <div class="row" style="justify-content:space-between">
-      <h1>Locked sites</h1>
-      <button id="back" class="secondary">Back</button>
+  <section id="view-manage" class="view stack hidden">
+    <div class="stack tight">
+      <h2>Locked sites</h2>
+      <ul id="site-list" class="list"></ul>
+      <form id="add-form" class="row">
+        <input id="add-domain" placeholder="Add a site, like example.com" required>
+        <button type="submit">Add</button>
+      </form>
     </div>
-    <form id="add-form" class="row">
-      <input id="add-domain" placeholder="example.com" required>
-      <button type="submit">Add</button>
-    </form>
-    <div class="panel"><ul id="site-list"></ul></div>
 
-    <label class="stack" style="gap:4px">
-      <span class="muted">Re-lock after unlocking</span>
-      <select id="relock">
-        <option value="5">5 minutes</option>
-        <option value="15">15 minutes</option>
-        <option value="30">30 minutes</option>
-        <option value="60">1 hour</option>
-        <option value="0">When the browser closes</option>
-      </select>
-    </label>
+    <div class="stack tight">
+      <h2>Locking</h2>
+      <label class="setting">
+        <span>Lock again after I unlock</span>
+        <select id="relock">
+          <option value="5">5 min</option>
+          <option value="15">15 min</option>
+          <option value="30">30 min</option>
+          <option value="60">1 hour</option>
+          <option value="0">When I close the browser</option>
+        </select>
+      </label>
+      <label class="setting">
+        <span>Lock everything when I'm away</span>
+        <select id="idle">
+          <option value="1">After 1 min</option>
+          <option value="3">After 3 min</option>
+          <option value="5">After 5 min</option>
+          <option value="10">After 10 min</option>
+          <option value="0">Only when the screen locks</option>
+        </select>
+      </label>
+    </div>
 
     <details>
-      <summary class="muted">Change password</summary>
-      <form id="pw-form" class="stack" style="margin-top:8px">
-        <input id="new-pw" type="password" placeholder="New password" autocomplete="new-password" required>
-        <button type="submit">Update password</button>
+      <summary>Change password</summary>
+      <form id="pw-form" class="row" style="margin-top:8px">
+        <input id="new-pw" type="password" placeholder="New password" autocomplete="new-password" minlength="4" required>
+        <button type="submit">Save</button>
       </form>
     </details>
-    <p id="manage-msg" class="error"></p>
+    <p id="manage-msg" class="error" role="status"></p>
   </section>
 
   <script type="module" src="popup.js"></script>

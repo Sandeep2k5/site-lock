@@ -6,7 +6,8 @@
 
 ### Put a password on any website.
 
-A tiny, private browser extension for **Microsoft Edge** that locks the sites you choose behind a password.<br>
+A tiny, private browser extension for **Microsoft Edge** that locks Instagram, WhatsApp and any site you choose behind a password.<br>
+Walked away and forgot to lock your laptop? Your chats stay private anyway.<br>
 No account. No servers. No tracking. Just a lock.
 
 [![Microsoft Edge](https://img.shields.io/badge/Microsoft_Edge-ready-0078D7?style=for-the-badge&logo=microsoftedge&logoColor=white)](#-install-in-30-seconds)
@@ -29,6 +30,7 @@ No account. No servers. No tracking. Just a lock.
 Sometimes you want a little friction between you and a website, or a little privacy on a shared computer.
 
 - 🎯 **Stay focused:** lock YouTube, Reddit or X during work, and unlocking becomes a conscious choice.
+- 🚻 **Forgot to lock your laptop:** step away for a minute and your Instagram and WhatsApp chats stay behind a password, even though you're logged in.
 - 👨‍👩‍👧 **Shared PC:** keep your email, banking or chats out of sight when someone else uses the computer.
 - 🙈 **Peace of mind:** a page you've locked never shows up on screen by accident.
 
@@ -49,6 +51,9 @@ Unlocked sites lock again after **5 / 15 / 30 / 60 minutes**, or when you close 
 ### 🌐 Covers subdomains
 Lock `youtube.com` and `m.youtube.com`, `music.youtube.com` and the rest are locked too.
 
+### 🚶 Locks when you walk away
+Everything locks the moment your screen locks or the laptop sleeps, or after 1 to 10 minutes without input. Press **Alt+Shift+L** to lock everything instantly.
+
 </td>
 <td width="50%" valign="top">
 
@@ -60,6 +65,9 @@ Removing a site, changing the timer or changing the password all ask for the cur
 
 ### 🧂 Never stores your password
 Only a salted **PBKDF2-SHA256** hash (200,000 rounds) is saved, and it stays on your device.
+
+### 🧱 Hard to get around
+The Back button and tabs left open are covered, not just new visits. After 5 wrong passwords the box waits 5s, then 10s, 20s and longer, and that survives a browser restart.
 
 </td>
 </tr>
@@ -101,7 +109,7 @@ That's normal for extensions installed outside the store. Close the warning; Sit
 | Step | What to do |
 |:---:|---|
 | **1** | Click the Site Lock icon and **create a password**. |
-| **2** | Open a site you want to lock, click the icon, then **Lock this site**. |
+| **2** | Open any site you want to protect, click the Site Lock icon, and answer **Lock this site?** |
 | **3** | Next time you open it, you'll see the lock screen. Enter the password to continue. |
 | **4** | Use **Manage sites** to add or remove sites, change the re-lock timer or change your password. |
 | **⚡** | **Lock all now** locks every unlocked site straight away. |
@@ -138,8 +146,9 @@ site-lock/
 ├── manifest.json        Extension config (Manifest V3)
 ├── background.js        Service worker: rules, timers, password checks
 ├── shared.js            Password hashing + domain helpers
-├── lock.html / lock.js  The lock screen
-├── popup.html / popup.js  Toolbar popup
+├── guard.js             Runs on locked sites: covers Back button and open tabs
+├── lock.html/.js/.css   The lock screen
+├── popup.html/.js/.css  Toolbar popup
 ├── style.css            Shared styles, light + dark
 ├── icons/               16–128 px icons
 ├── store/               Store listing assets
@@ -162,6 +171,9 @@ No build step. Edit a file, then hit **Reload** on the Site Lock card in `edge:/
 | `declarativeNetRequest` | Redirect locked sites to the lock screen before they load |
 | `storage` | Save your site list, settings and password hash |
 | `alarms` | Re-lock sites when their timer ends |
+| `idle` | Lock everything when your screen locks or you've been away |
+| `scripting` | Cover the Back button and tabs left open on a locked site |
+| `favicon` | Show each site's icon from the browser's own cache (no network) |
 | Access to all sites | Needed for the redirect, and to lock tabs that are already open |
 
 Everything stays in your browser's local extension storage. Nothing is ever sent anywhere. Read the [privacy policy](PRIVACY.md).

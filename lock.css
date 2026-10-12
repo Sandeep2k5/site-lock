@@ -1,0 +1,72 @@
+/* Lock screen: modelled on an OS lock screen. One clock, one site, one field. */
+body {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  background:
+    radial-gradient(1200px 600px at 50% -10%, color-mix(in srgb, var(--brand) 22%, transparent), transparent 70%),
+    var(--bg);
+}
+.lock {
+  align-self: center;
+  justify-self: center;
+  width: 100%;
+  max-width: 380px;
+  padding: 32px 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.clock {
+  font-size: clamp(56px, 12vw, 88px);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -.03em;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 40px;
+}
+
+.badge { position: relative; width: 72px; height: 72px; margin-bottom: 18px; }
+.site-icon {
+  width: 72px; height: 72px;
+  padding: 16px;
+  border-radius: 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  filter: grayscale(.35);
+}
+.padlock {
+  position: absolute; right: -8px; bottom: -8px;
+  width: 34px; height: 34px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: var(--brand);
+  color: var(--on-brand);
+  border: 3px solid var(--bg);
+}
+
+#site { font-size: 22px; word-break: break-word; }
+#hint { margin-top: 4px; }
+
+.pw {
+  margin-top: 24px;
+  width: 100%;
+  display: flex;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  padding: 4px;
+}
+.pw:focus-within { border-color: var(--brand); box-shadow: 0 0 0 3px var(--ring); }
+.pw input { border: 0; background: transparent; font-size: 16px; padding: 10px 12px; }
+.pw input:focus-visible { outline: none; }
+.pw button { width: 44px; padding: 0; display: grid; place-items: center; border-radius: 10px; flex: none; }
+.pw.shake { animation: shake .36s; }
+@keyframes shake {
+  20%, 60% { transform: translateX(-7px); }
+  40%, 80% { transform: translateX(7px); }
+}
+#error { margin-top: 10px; }
+.footer { text-align: center; font-size: 12px; padding: 16px; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
