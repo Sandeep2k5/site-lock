@@ -4,24 +4,42 @@
 
 # Site Lock
 
-### Put a password on any website.
+### Left your laptop unlocked? Your chats stay locked.
 
-A tiny, private browser extension for **Microsoft Edge** that locks Instagram, WhatsApp and any site you choose behind a password.<br>
-Walked away and forgot to lock your laptop? Your chats stay private anyway.<br>
+A tiny, private browser extension for **Microsoft Edge** that puts a password on Instagram, WhatsApp or any site you choose.<br>
 No account. No servers. No tracking. Just a lock.
 
 [![Microsoft Edge](https://img.shields.io/badge/Microsoft_Edge-ready-0078D7?style=for-the-badge&logo=microsoftedge&logoColor=white)](#-install-in-30-seconds)
 [![Manifest V3](https://img.shields.io/badge/Manifest-V3-3b5bdb?style=for-the-badge)](https://learn.microsoft.com/en-us/microsoft-edge/extensions/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-2b8a3e?style=for-the-badge)](LICENSE)
+[![Version](https://img.shields.io/github/v/release/Sandeep2k5/site-lock?style=for-the-badge&color=3b5bdb&label=version)](https://github.com/Sandeep2k5/site-lock/releases/latest)
 [![Dependencies: 0](https://img.shields.io/badge/dependencies-0-646b78?style=for-the-badge)](#-under-the-hood)
 
 [**⬇️ Download**](https://github.com/Sandeep2k5/site-lock/releases/latest) · [**Install**](#-install-in-30-seconds) · [**How it works**](#-under-the-hood) · [**Privacy**](PRIVACY.md)
 
 <br>
 
-<img src="docs/hero.png" alt="A locked YouTube tab in Edge showing the Site Lock password screen" width="860">
+<img src="docs/hero.png" alt="An Instagram tab in Edge showing the Site Lock lock screen with a clock and a password box" width="860">
 
 </div>
+
+<br>
+
+## 🎬 See it in action
+
+<div align="center">
+<img src="docs/demo.gif" alt="Someone types instagram.com on an unlocked laptop and gets the Site Lock screen instead of the chats" width="540">
+</div>
+
+<br>
+
+## 🆕 What's new in 1.1
+
+- **Lock any site in one click.** Open a site, click Site Lock, and it asks *Lock this site?*. No built-in list.
+- **Locks itself when you walk away.** Screen lock, sleep, or 1 to 10 minutes without input locks everything.
+- **Alt+Shift+L** locks every site instantly.
+- **Harder to get around.** The Back button and tabs left open are covered, and repeated wrong passwords make you wait.
+- **A new lock screen** with a clock, the site's icon and a cleaner popup.
 
 <br>
 
@@ -74,7 +92,7 @@ The Back button and tabs left open are covered, not just new visits. After 5 wro
 </table>
 
 <div align="center">
-<img src="docs/popup.png" alt="The Site Lock popup: lock the current site, manage the list, and see unlock status" width="860">
+<img src="docs/popup.png" alt="The Site Lock popup asking to lock the current site, showing an unlocked site, and listing locked sites with timer settings" width="860">
 </div>
 
 <br>
@@ -89,6 +107,12 @@ The Back button and tabs left open are covered, not just new visits. After 5 wro
 4. Click **Load unpacked** and select the extracted folder.
 
 Then click the 🧩 icon in the toolbar and pin **Site Lock** so it's always visible.
+
+<details>
+<summary><b>Updating from an older version</b></summary>
+<br>
+Extract the new zip over your old Site Lock folder, then click <b>Reload</b> on the Site Lock card in <code>edge://extensions</code>. Your password and locked sites are kept.
+</details>
 
 <details>
 <summary><b>Using Chrome, Brave, Opera or another Chromium browser?</b></summary>
@@ -111,8 +135,8 @@ That's normal for extensions installed outside the store. Close the warning; Sit
 | **1** | Click the Site Lock icon and **create a password**. |
 | **2** | Open any site you want to protect, click the Site Lock icon, and answer **Lock this site?** |
 | **3** | Next time you open it, you'll see the lock screen. Enter the password to continue. |
-| **4** | Use **Manage sites** to add or remove sites, change the re-lock timer or change your password. |
-| **⚡** | **Lock all now** locks every unlocked site straight away. |
+| **4** | Use **Sites and settings** to remove sites, set the re-lock timer and auto-lock, or change your password. |
+| **⚡** | **Lock all now** (or **Alt+Shift+L**) locks every unlocked site straight away. |
 
 <br>
 

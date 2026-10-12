@@ -67,3 +67,6 @@ details summary:hover { color: var(--text); }
 .ask-icon { width: 40px; height: 40px; border-radius: 10px; margin-bottom: 2px; }
 .ask h1 { font-size: 17px; word-break: break-word; }
 .ask .row { width: 100%; margin-top: 6px; }
+
+/* Don't hold space for a status line that has nothing to say. */
+#main-msg:empty { display: none; }
