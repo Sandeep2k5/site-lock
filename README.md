@@ -47,10 +47,10 @@ No account. No servers. No tracking. Just a lock.
 
 Sometimes you want a little friction between you and a website, or a little privacy on a shared computer.
 
-- 🎯 **Stay focused:** lock YouTube, Reddit or X during work, and unlocking becomes a conscious choice.
-- 🚻 **Forgot to lock your laptop:** step away for a minute and your Instagram and WhatsApp chats stay behind a password, even though you're logged in.
-- 👨‍👩‍👧 **Shared PC:** keep your email, banking or chats out of sight when someone else uses the computer.
-- 🙈 **Peace of mind:** a page you've locked never shows up on screen by accident.
+- **Stay focused:** lock YouTube, Reddit or X during work, and unlocking becomes a conscious choice.
+- **Forgot to lock your laptop:** step away for a minute and your Instagram and WhatsApp chats stay behind a password, even though you're logged in.
+- **Shared PC:** keep your email, banking or chats out of sight when someone else uses the computer.
+- **Peace of mind:** a page you've locked never shows up on screen by accident.
 
 <br>
 
