@@ -225,17 +225,6 @@ Site Lock is a **focus and privacy tool, not a vault**.
 
 Have an idea? [Open an issue](https://github.com/Sandeep2k5/site-lock/issues).
 
-<br>
-
-## 🤝 Contributing
-
-Bug reports, ideas and pull requests are welcome.
-
-1. Fork the repo and create a branch
-2. Load it unpacked in Edge and make your change
-3. Open a pull request describing what changed and how you tested it
-
-<br>
 
 <div align="center">
 
