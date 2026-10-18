@@ -216,16 +216,6 @@ Site Lock is a **focus and privacy tool, not a vault**.
 
 <br>
 
-## 🗺️ Roadmap
-
-- [ ] Publish on Microsoft Edge Add-ons
-- [ ] Scheduled locks (e.g. lock social media 9am–5pm)
-- [ ] A different password for each site
-- [ ] Lock specific pages, not just whole domains
-
-Have an idea? [Open an issue](https://github.com/Sandeep2k5/site-lock/issues).
-
-
 <div align="center">
 
 **If Site Lock helps you, a ⭐ on the repo helps other people find it.**
